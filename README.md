@@ -21,3 +21,8 @@ pip install -r requirements.txt
 import os
 os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
 ```
+
+创建虚拟环境
+```
+python -m venv myvenv
+```
