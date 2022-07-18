@@ -21,7 +21,7 @@ pestat -G
 
 srun --pty --partition=scavenger --gres=gpu:8 --mem=240G -n 24 -w gpu02 --time=2-00:00:00 bash
 
-srun --pty --partition=fvl --qos=high --gres=gpu:2 --mem=80G -n 8 -w gpu02 --time=2-00:00:00 bash
+srun --pty --partition=fvl --qos=high --gres=gpu:2 --mem=80G -n 8 --time=2-00:00:00 bash
 srun --pty --partition=fvl --qos=medium --gres=gpu:1 --mem=40G -n 4 -w gpu02 --time=2-00:00:00 bash
 srun --pty --partition=fvl --qos=medium --gres=gpu:1 --mem=40G -n 4 -w gpu02 --time=2-00:00:00 bash
 srun --pty --partition=fvl --qos=medium --gres=gpu:1 --mem=40G -n 4 -w gpu13 --time=2-00:00:00 bash
@@ -84,17 +84,19 @@ ssh -i key_opentai opentai@10.176.53.107
 opentai@fvl
 
 
+scp -r ~/Documents/GitHub/aigov_backend/web/deepfake_backend/api/views.py temp@121.41.102.235:/home/temp/test2/views.py
 scp -r ~/Documents/GitHub/aigov_backend/web/deepfake_backend/static/First-order-motion temp@121.41.102.235:/home/temp/test2
-scp -r ~/Documents/GitHub/aigov_backend/web/deepfake_backend/static/original temp@121.41.102.235:/home/temp/test2
+scp -r ~/Documents/GitHub/aigov_backend/web/deepfake_backend/static/Det/model_arch temp@121.41.102.235:/home/temp/test2
 scp -r /Users/zhangchao/Desktop/dzl/Det temp@121.41.102.235:/home/temp/test2
 
-scp -r -i ~/key_opentai ./First-order-motion opentai@10.176.53.107:/home/opentai/aigov_backend/web/deepfake_backend/static
-scp -r -i ~/key_opentai ./original opentai@10.176.53.107:/home/opentai/aigov_backend/web/deepfake_backend/static
+scp -r -i ~/key_opentai ./views.py opentai@10.176.53.107:/home/opentai/aigov_backend/web/deepfake_backend/api/views.py
+scp -r -i ~/key_opentai ./model_arch opentai@10.176.53.107:/home/opentai/aigov_backend/web/deepfake_backend/static/Det
 scp -r -i ~/key_opentai ./Det opentai@10.176.53.107:/home/opentai/aigov_backend/web/deepfake_backend/static
 
 sudo docker stop deepfake_backend
 opentai@fvl
 sudo docker rm deepfake_backend
 sudo docker rmi deepfake_backend
+cd /home/opentai/aigov_backend/web/deepfake_backend
 sudo docker build -t deepfake_backend .
 sudo docker run -v /home/opentai/aigov_backend/web/deepfake_backend:/app/ -d -p 8094:8000 --restart unless-stopped --name deepfake_backend deepfake_backend
