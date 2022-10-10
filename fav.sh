@@ -24,7 +24,7 @@ srun --pty --partition=scavenger --gres=gpu:8 --mem=240G -n 24 -w gpu02 --time=2
 srun --pty --partition=fvl --qos=high --gres=gpu:2 --mem=80G -n 8 --time=2-00:00:00 bash
 srun --pty --partition=fvl --qos=medium --gres=gpu:4 --mem=80G -n 16 -w gpu13 --time=2-00:00:00 bash
 srun --pty --partition=fvl --qos=medium --gres=gpu:1 --mem=40G -n 4 -w gpu02 --time=2-00:00:00 bash
-srun --pty --partition=fvl --qos=medium --gres=gpu:4 --mem=160G -n 16 -w gpu14 --time=2-00:00:00 bash
+srun --pty --partition=fvl --qos=medium --gres=gpu:4 --mem=160G -n 16 -w gpu13 --time=2-00:00:00 bash
 
 
 cat x.txt | wc -l
@@ -114,3 +114,9 @@ git pull
 git checkout dev
 git merge master 
 git push -u origin dev
+
+
+
+
+
+
